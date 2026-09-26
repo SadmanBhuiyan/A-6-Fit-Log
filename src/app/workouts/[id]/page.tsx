@@ -8,94 +8,125 @@ const WorkoutDetailsPage = async ({ params }: { params: { id: string } }) => {
   const workout = await getWorkout(id);
 
   return (
-    <div className='py-8'>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+    <div className='py-10'>
+
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>
 
         <div>
           <Image
             src={workout.image}
             alt={workout.name}
             width={700}
-            height={500}
-            className='w-full h-[500px] object-cover rounded-lg'
+            height={600}
+            className='w-full h-[500px] object-cover rounded-2xl'
           />
         </div>
 
         <div>
-          <div className='flex gap-2 mb-4'>
+
+
+          <h1 className='text-3xl lg:text-3xl font-bold uppercase'>
+            {workout.name}
+          </h1>
+
+          <p className='text-[#9CA3AF] mt-2 leading-7'>
+            {workout.description}
+          </p>
+
+          <div className='flex gap-2 mb-4 my-3'>
             {workout.muscleGroups.map((group) => (
               <span
                 key={group}
-                className='badge rounded-2xl bg-[#C2F800] text-black font-semibold'
+                className='badge bg-[#C2F800] text-black border-0 rounded-full font-semibold'
               >
                 {group}
               </span>
             ))}
           </div>
 
-          <h1 className='text-4xl font-bold uppercase'>
-            {workout.name}
-          </h1>
+          <div className='border border-[#303030] rounded-xl overflow-hidden my-4'>
+            <table className='w-full'>
 
-          <p className='text-[#9CA3AF] mt-3'>
-            {workout.description}
-          </p>
+              <tbody>
 
-          <div className='divider'></div>
+                <tr className='border-b border-[#303030]'>
+                  <td className='p-4 text-[#9CA3AF]'>
+                    EQUIPMENT
+                  </td>
+                  <td className='p-4 text-right font-semibold'>
+                    {workout.equipment}
+                  </td>
+                </tr>
 
-          <h2 className='text-2xl font-bold mb-4'>
-            KEY SPECS
-          </h2>
+                <tr className='border-b border-[#303030]'>
+                  <td className='p-4 text-[#9CA3AF]'>
+                    DIFFICULTY
+                  </td>
+                  <td className='p-4 text-right font-semibold'>
+                    {workout.difficulty}
+                  </td>
+                </tr>
 
-          <div className='grid grid-cols-2 gap-4'>
+                <tr className='border-b border-[#303030]'>
+                  <td className='p-4 text-[#9CA3AF]'>
+                    SETS
+                  </td>
+                  <td className='p-4 text-right font-semibold'>
+                    {workout.sets}
+                  </td>
+                </tr>
 
-            <div>
-              <p className='text-[#9CA3AF]'>EQUIPMENT</p>
-              <p>{workout.equipment}</p>
-            </div>
+                <tr className='border-b border-[#303030]'>
+                  <td className='p-4 text-[#9CA3AF]'>
+                    REPS
+                  </td>
+                  <td className='p-4 text-right font-semibold'>
+                    {workout.reps}
+                  </td>
+                </tr>
 
-            <div>
-              <p className='text-[#9CA3AF]'>DIFFICULTY</p>
-              <p>{workout.difficulty}</p>
-            </div>
+                <tr className='border-b border-[#303030]'>
+                  <td className='p-4 text-[#9CA3AF]'>
+                    DURATION
+                  </td>
+                  <td className='p-4 text-right font-semibold'>
+                    {workout.duration} min
+                  </td>
+                </tr>
 
-            <div>
-              <p className='text-[#9CA3AF]'>SETS</p>
-              <p>{workout.sets}</p>
-            </div>
+                <tr className='border-b border-[#303030]'>
+                  <td className='p-4 text-[#9CA3AF]'>
+                    CALORIES
+                  </td>
+                  <td className='p-4 text-right font-semibold'>
+                    {workout.caloriesBurned} kcal
+                  </td>
+                </tr>
 
-            <div>
-              <p className='text-[#9CA3AF]'>REPS</p>
-              <p>{workout.reps}</p>
-            </div>
+                <tr>
+                  <td className='p-4 text-[#9CA3AF]'>
+                    RATING
+                  </td>
+                  <td className='p-4 text-right font-semibold'>
+                    ⭐ {workout.rating}
+                  </td>
+                </tr>
 
-            <div>
-              <p className='text-[#9CA3AF]'>DURATION</p>
-              <p>{workout.duration} min</p>
-            </div>
-
-            <div>
-              <p className='text-[#9CA3AF]'>CALORIES</p>
-              <p>{workout.caloriesBurned} kcal</p>
-            </div>
-
-            <div>
-              <p className='text-[#9CA3AF]'>RATING</p>
-              <p>⭐ {workout.rating}</p>
-            </div>
-
+              </tbody>
+            </table>
           </div>
 
-          <div className='divider'></div>
-
-          <h2 className='text-2xl font-bold mb-4'>
+          <h2 className='text-xl font-bold mb-4'>
             INSTRUCTIONS
           </h2>
 
           <ol className='space-y-4'>
             {workout.instructions.map((instruction, index) => (
-              <li key={instruction} className='flex gap-4'>
-                <span className='text-[#9CA3AF] font-bold'>
+              <li
+                key={index}
+                className='flex gap-4'
+              >
+                <span className='text-[#9CA3AF] font-bold text-lg'>
                   {index + 1}.
                 </span>
 
@@ -105,6 +136,16 @@ const WorkoutDetailsPage = async ({ params }: { params: { id: string } }) => {
               </li>
             ))}
           </ol>
+
+          <div className='flex gap-3 mt-8'>
+            <button className='btn bg-[#C2F800] text-black border-0'>
+              ADD TO TODAY'S PLAN
+            </button>
+
+            <button className='btn btn-outline'>
+              SAVE FOR LATER
+            </button>
+          </div>
 
         </div>
       </div>
