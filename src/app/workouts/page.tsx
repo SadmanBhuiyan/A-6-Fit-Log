@@ -3,6 +3,8 @@ import Banner from '../../components/Banner';
 import WorkoutCard from '../../components/WorkoutCard';
 import {getWorkouts} from '../../utils/api';
 
+export const dynamic = 'force-dynamic';
+
 const WorkoutsPage = async () => {
     const workouts = await getWorkouts();
 

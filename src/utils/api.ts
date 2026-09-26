@@ -26,7 +26,7 @@ export const getWorkouts = async (): Promise<Workout[]> => {
 
 export const getWorkout = async (id: string): Promise<Workout> => {
     const res = await fetch(
-        `https://api.api-store.workers.dev/api/fitlog${id}`
+        `https://api.api-store.workers.dev/api/fitlog/${id}`
     );
 
     if (!res.ok) {
