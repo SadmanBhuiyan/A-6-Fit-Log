@@ -14,7 +14,7 @@ export type Workout = {
     instructions: string[];
 };
 
-const getWorkouts = async (): Promise<Workout[]> => {
+export const getWorkouts = async (): Promise<Workout[]> => {
     const res = await fetch('https://api.abcz.workers.dev/api/fitlog');
 
     if (!res.ok) {
@@ -25,7 +25,9 @@ const getWorkouts = async (): Promise<Workout[]> => {
 };
 
 export const getWorkout = async (id: string): Promise<Workout> => {
-    const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
+    const res = await fetch(
+        `https://api.abcz.workers.dev/api/fitlog/${id}`
+    );
 
     if (!res.ok) {
         throw new Error('Workout not found');
@@ -33,5 +35,3 @@ export const getWorkout = async (id: string): Promise<Workout> => {
 
     return res.json();
 };
-
-export default getWorkouts;
