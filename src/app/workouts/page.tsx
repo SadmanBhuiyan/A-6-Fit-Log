@@ -1,9 +1,23 @@
 import React from 'react';
+import Banner from '../../components/Banner';
+import WorkoutCard from '../../components/WorkoutCard';
+import getWorkouts from '../../utils/api';
 
-const WorkoutsPage = () => {
+const WorkoutsPage = async () => {
+    const workouts = await getWorkouts();
+
     return (
         <div>
-            workouts
+            <Banner />
+            <div className='my-2'>
+                <p className='text-4xl font-bold'>THE LIBRARY</p>
+                <p className='text-[#9CA3AF]'>Twelve lifts covering every major muscle group.</p>
+            </div>
+            <div className='grid grid-cols-3 gap-4 my-2'>
+                {workouts.map((workout) => (
+                    <WorkoutCard key={workout.id} workout={workout} />
+                ))}
+            </div>
         </div>
     );
 };
