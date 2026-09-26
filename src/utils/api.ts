@@ -21,7 +21,17 @@ const getWorkouts = async (): Promise<Workout[]> => {
         throw new Error('Failed to fetch workouts');
     }
 
-    return (await res.json()) as Promise<Workout[]>;
+    return res.json();
+};
+
+export const getWorkout = async (id: string): Promise<Workout> => {
+    const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
+
+    if (!res.ok) {
+        throw new Error('Workout not found');
+    }
+
+    return res.json();
 };
 
 export default getWorkouts;
